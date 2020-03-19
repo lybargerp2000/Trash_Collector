@@ -62,7 +62,7 @@ namespace TrashCollector.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,Name,DayOfWeekChoice,AccountBalance,Adress,Email,Password,ExtraDayDateChoice,StartDate,StopDate,IdentityUserId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Name,DayOfWeekChoice,AccountBalance,Adress,ExtraDayDateChoice,StartDate,StopDate")] Customer customer)
         {
             if (ModelState.IsValid)
             {
