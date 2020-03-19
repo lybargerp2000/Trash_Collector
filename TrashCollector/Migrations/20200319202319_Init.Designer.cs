@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashCollector.Data;
 
-namespace TrashCollector.Data.Migrations
+namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200318211931_Initial")]
-    partial class Initial
+    [Migration("20200319202319_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,10 +50,17 @@ namespace TrashCollector.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f5a2c3b0-34f1-4866-af92-770642a14bb4",
-                            ConcurrencyStamp = "69fccc30-5218-48f3-abd7-dd3cb4c2fa7b",
-                            Name = "Admin",
-                            NormalizedName = "Admin"
+                            Id = "874823c6-1592-48b3-9ca3-960d4d89c5f7",
+                            ConcurrencyStamp = "0999c0ba-8c40-4e54-92d3-6d59f460d589",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        },
+                        new
+                        {
+                            Id = "e5b0fa1d-049f-47b1-ad52-d38eda448819",
+                            ConcurrencyStamp = "30c0f145-809f-4947-b8b2-ba52498102f1",
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
                         });
                 });
 
@@ -270,6 +277,35 @@ namespace TrashCollector.Data.Migrations
                     b.ToTable("Customer");
                 });
 
+            modelBuilder.Entity("TrashCollector.Models.Date", b =>
+                {
+                    b.Property<int>("DateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CalenderDate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DayOfWeek")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ExtraPickUpDate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("WeekOfMonth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DateId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Date");
+                });
+
             modelBuilder.Entity("TrashCollector.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
@@ -348,6 +384,13 @@ namespace TrashCollector.Data.Migrations
                 });
 
             modelBuilder.Entity("TrashCollector.Models.Customer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("TrashCollector.Models.Date", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()

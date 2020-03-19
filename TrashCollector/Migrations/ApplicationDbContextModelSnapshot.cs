@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashCollector.Data;
 
-namespace TrashCollector.Data.Migrations
+namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200319145646_Date")]
-    partial class Date
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,10 +48,17 @@ namespace TrashCollector.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ecfdff38-2a87-472b-aae2-d16ce763784d",
-                            ConcurrencyStamp = "d4f6d1f7-2e7e-42b7-99a0-ede15f240bbd",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
+                            Id = "874823c6-1592-48b3-9ca3-960d4d89c5f7",
+                            ConcurrencyStamp = "0999c0ba-8c40-4e54-92d3-6d59f460d589",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        },
+                        new
+                        {
+                            Id = "e5b0fa1d-049f-47b1-ad52-d38eda448819",
+                            ConcurrencyStamp = "30c0f145-809f-4947-b8b2-ba52498102f1",
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
                         });
                 });
 
@@ -282,6 +287,9 @@ namespace TrashCollector.Data.Migrations
 
                     b.Property<string>("DayOfWeek")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ExtraPickUpDate")
+                        .HasColumnType("int");
 
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
