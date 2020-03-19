@@ -24,6 +24,7 @@ namespace TrashCollector.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var myCustomerProfile = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             var applicationDbContext = _context.Customer.Include(c => c.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -63,6 +64,8 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customer.IdentityUserId = userId;
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

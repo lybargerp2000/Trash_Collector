@@ -22,7 +22,7 @@ namespace TrashCollector.Data
                     new IdentityRole
                     {
                         Name = "Admin",
-                        NormalizedName = "Admin"
+                        NormalizedName = "ADMIN"
 
                     }
                     );
