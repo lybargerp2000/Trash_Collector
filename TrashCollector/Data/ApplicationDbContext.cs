@@ -15,9 +15,9 @@ namespace TrashCollector.Data
         {
         }
        
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<Employee> Employee { get; set; }
-        public DbSet<Date> Date { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        //public DbSet<Date> Dates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,7 +29,7 @@ namespace TrashCollector.Data
                         Name = "Employee",
                         NormalizedName = "EMPLOYEE"
 
-                    },new IdentityRole
+                    }, new IdentityRole
                     {
                         Name = "Customer",
                         NormalizedName = "CUSTOMER"

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashCollector.Data;
 
 namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200323170521_Recent")]
+    partial class Recent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,34 +277,34 @@ namespace TrashCollector.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("TrashCollector.Models.Date", b =>
-                {
-                    b.Property<int>("DateId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            //modelBuilder.Entity("TrashCollector.Models.Date", b =>
+            //    {
+            //        b.Property<int>("DateId")
+            //            .ValueGeneratedOnAdd()
+            //            .HasColumnType("int")
+            //            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CalenderDate")
-                        .HasColumnType("int");
+            //        b.Property<int>("CalenderDate")
+            //            .HasColumnType("int");
 
-                    b.Property<string>("DayOfWeek")
-                        .HasColumnType("nvarchar(max)");
+            //        b.Property<string>("DayOfWeek")
+            //            .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ExtraPickUpDate")
-                        .HasColumnType("int");
+            //        b.Property<int>("ExtraPickUpDate")
+            //            .HasColumnType("int");
 
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
+            //        b.Property<string>("IdentityUserId")
+            //            .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("WeekOfMonth")
-                        .HasColumnType("nvarchar(max)");
+            //        b.Property<string>("WeekOfMonth")
+            //            .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("DateId");
+            //        b.HasKey("DateId");
 
-                    b.HasIndex("IdentityUserId");
+            //        b.HasIndex("IdentityUserId");
 
-                    b.ToTable("Dates");
-                });
+            //        b.ToTable("Dates");
+            //    });
 
             modelBuilder.Entity("TrashCollector.Models.Employee", b =>
                 {
@@ -388,12 +390,12 @@ namespace TrashCollector.Migrations
                         .HasForeignKey("IdentityUserId");
                 });
 
-            modelBuilder.Entity("TrashCollector.Models.Date", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
-                });
+            //modelBuilder.Entity("TrashCollector.Models.Date", b =>
+            //    {
+            //        b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+            //            .WithMany()
+            //            .HasForeignKey("IdentityUserId");
+            //    });
 
             modelBuilder.Entity("TrashCollector.Models.Employee", b =>
                 {

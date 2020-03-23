@@ -26,8 +26,8 @@ namespace TrashCollector.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var myCustomerProfile = _context.Employee.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            var applicationDbContext = _context.Employee.Include(e => e.IdentityUser);
+            var myEmployeeProfile = _context.Employees.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var applicationDbContext = _context.Employees.Include(e => e.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -39,7 +39,7 @@ namespace TrashCollector.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employee
+            var employee = await _context.Employees
                 .Include(e => e.IdentityUser)
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
             if (employee == null)
@@ -84,7 +84,7 @@ namespace TrashCollector.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employee.FindAsync(id);
+            var employee = await _context.Employees.FindAsync(id);
             if (employee == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace TrashCollector.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employee
+            var employee = await _context.Employees
                 .Include(e => e.IdentityUser)
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
             if (employee == null)
@@ -153,15 +153,15 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var employee = await _context.Employee.FindAsync(id);
-            _context.Employee.Remove(employee);
+            var employee = await _context.Employees.FindAsync(id);
+            _context.Employees.Remove(employee);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EmployeeExists(int id)
         {
-            return _context.Employee.Any(e => e.EmployeeId == id);
+            return _context.Employees.Any(e => e.EmployeeId == id);
         }
     }
 }
