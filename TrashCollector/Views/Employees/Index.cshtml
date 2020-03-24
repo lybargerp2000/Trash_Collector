@@ -1,50 +1,17 @@
-﻿@model IEnumerable<TrashCollector.Models.Employee>
+﻿@model TrashCollector.Models.Employee
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
+<p>Name: @Model.Name</p>
+<p>E-Mail: @Model.Email</p>
 
-<p>
-    <a asp-action="Create">Inset/UpdateInformation</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-               
-
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 <li>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="Index">List Of Customers</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="CustomerInfoCharts" asp-action="Index">Customer Daily Info</a>
+    <a asp-action="Edit" asp-route-id="@Model.Name">Edit</a>
+    <a asp-action="Edit" asp-route-id="@Model.Email">Edit</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="Index2">List Of Customers</a>
+    <a asp-controller="CustomerInfoCharts" asp-action="Index">Customer Daily Info</a>
 </li>

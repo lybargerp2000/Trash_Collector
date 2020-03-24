@@ -27,8 +27,11 @@ namespace TrashCollector.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var myEmployeeProfile = _context.Employees.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            var applicationDbContext = _context.Employees.Include(e => e.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+          if(myEmployeeProfile == null)
+            {
+                return RedirectToAction("Create");
+            }
+            return View(myEmployeeProfile);
         }
 
         // GET: Employees/Details/5

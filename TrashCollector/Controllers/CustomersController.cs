@@ -34,6 +34,12 @@ namespace TrashCollector.Controllers
             return View(myCustomerProfile);
             
         }
+        public ActionResult Index2() 
+        {
+            var customers = _context.Customers;
+            return View(customers);
+        
+        }
 
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
