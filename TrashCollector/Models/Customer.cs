@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,11 +17,13 @@ namespace TrashCollector.Models
         public string Adress { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int ExtraDayDateChoice { get; set; }
-        public int StartDate { get; set; }
-        public int StopDate { get; set; }
+        public string ExtraDayDateChoice { get; set; }
+        public string StartDate { get; set; }
+        public string StopDate { get; set; }
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        [NotMapped]
+        public SelectList DaysOfWeek { get; set; }
     }
 }

@@ -20,13 +20,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="DayOfWeekChoice" class="control-label"></label>
-                <input asp-for="DayOfWeekChoice" class="form-control" />
+                <select asp-for="DayOfWeekChoice" asp-items="@Model.DaysOfWeek" class="form-control"></select>
                 <span asp-validation-for="DayOfWeekChoice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AccountBalance" class="control-label"></label>
-                <input asp-for="AccountBalance" class="form-control" />
-                <span asp-validation-for="AccountBalance" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Adress" class="control-label"></label>
@@ -37,11 +32,6 @@
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ExtraDayDateChoice" class="control-label"></label>

@@ -11,10 +11,11 @@
    <p> Location: @Model.Adress</p>
    <p>Extra Day Pick Up: @Model.ExtraDayDateChoice</p>
    <p>Start Date of Service: @Model.StartDate</p>
+   <p>End Date of Service: @Model.StopDate</p>
 
    <li>
-       <a asp-action="Edit" asp-route-id="@Model.Name">Edit</a>
-       <a asp-action="Edit" asp-route-id="@Model.DayOfWeekChoice">Edit Day of Week choice</a>
+       <a asp-action="Edit" asp-route-id="@Model.CustomerId">Edit</a>
+       @*<a asp-action="Edit" asp-route-id="@Model.DayOfWeekChoice">Edit Day of Week choice</a>*@
        
    </li>
 

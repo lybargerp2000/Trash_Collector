@@ -31,6 +31,7 @@ namespace TrashCollector.Controllers
             {
                 return RedirectToAction("Create");
             }
+
             return View(myCustomerProfile);
             
         }
@@ -63,8 +64,10 @@ namespace TrashCollector.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            Customer customer = new Customer();
+            List<string> daysOfWeek = new List<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            customer.DaysOfWeek = new SelectList(daysOfWeek);
+            return View(customer);
         }
 
         // POST: Customers/Create
@@ -100,7 +103,9 @@ namespace TrashCollector.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            List<string> daysOfWeek = new List<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            customer.DaysOfWeek = new SelectList(daysOfWeek);
             return View(customer);
         }
 
