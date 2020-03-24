@@ -20,9 +20,17 @@ namespace TrashCollector.Controllers
         }
 
         // GET: CustomerInfoCharts
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.CustomerInfoCharts.ToListAsync());
+            var customerInfoCharts = _context.CustomerInfoCharts.Include(m => m.Customer).ToList();
+            return View(customerInfoCharts);
+            //var customers = _context.Customers.ToList();
+            //CustomerInfoChart customerInfoChart = new CustomerInfoChart()
+            //{
+            //    Customers = customers
+            //};
+            //return View(customers);
+            //return View(await _context.CustomerInfoCharts.ToListAsync());
         }
 
         // GET: CustomerInfoCharts/Details/5
@@ -46,6 +54,11 @@ namespace TrashCollector.Controllers
         // GET: CustomerInfoCharts/Create
         public IActionResult Create()
         {
+            //var customers = _context.Customers.ToList();
+            //CustomerInfoChart customerInfoChart = new CustomerInfoChart()
+            //{
+            //    Customers = customers
+            //};
             return View();
         }
 
@@ -56,6 +69,7 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CustomerInfoChartId,CustomerDayOfWeek,PickUpConfirm,CustomerPickUpCharge")] CustomerInfoChart customerInfoChart)
         {
+           
             if (ModelState.IsValid)
             {
                 _context.Add(customerInfoChart);
