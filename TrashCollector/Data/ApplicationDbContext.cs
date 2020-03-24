@@ -37,6 +37,13 @@ namespace TrashCollector.Data
                     }
 
                     );
+               //builder.Entity<Customer>()
+               // .HasData(
+               //    new Customer
+               //    {
+               //        IdentityUser = Customer.CustomerId,
+
+               //    })
         }
     }
 }
