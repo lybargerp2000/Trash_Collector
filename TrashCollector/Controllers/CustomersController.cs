@@ -23,7 +23,7 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var myCustomerProfile = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
@@ -33,7 +33,7 @@ namespace TrashCollector.Controllers
             }
 
             return View(myCustomerProfile);
-            
+
         }
         public ActionResult Index2() 
         {
@@ -65,6 +65,7 @@ namespace TrashCollector.Controllers
         public IActionResult Create()
         {
             Customer customer = new Customer();
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             List<string> daysOfWeek = new List<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
             customer.DaysOfWeek = new SelectList(daysOfWeek);
             return View(customer);
@@ -103,9 +104,10 @@ namespace TrashCollector.Controllers
             {
                 return NotFound();
             }
-            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            
             List<string> daysOfWeek = new List<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
             customer.DaysOfWeek = new SelectList(daysOfWeek);
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
             return View(customer);
         }
 
@@ -114,35 +116,24 @@ namespace TrashCollector.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,Name,DayOfWeekChoice,AccountBalance,Adress,Email,Password,ExtraDayDateChoice,StartDate,StopDate,IdentityUserId")] Customer customer)
+        public ActionResult Edit(int id, Customer customer)
         {
-            if (id != customer.CustomerId)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(customer);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CustomerExists(customer.CustomerId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+
+                _context.Update(customer);
+                _context.SaveChanges();
+
+
+                //return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
-            return View(customer);
+            return RedirectToAction("Index");
         }
 
         // GET: Customers/Delete/5

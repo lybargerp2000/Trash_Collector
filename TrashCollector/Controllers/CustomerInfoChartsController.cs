@@ -20,10 +20,10 @@ namespace TrashCollector.Controllers
         }
 
         // GET: CustomerInfoCharts
-        public IActionResult Index()
-        {
-            var customerInfoCharts = _context.CustomerInfoCharts.Include(m => m.Customer).ToList();
-            return View(customerInfoCharts);
+        //public IActionResult Index()
+        //{
+            //var customerInfoCharts = _context.CustomerInfoCharts.Include(m => m.Customer).ToList();
+            //return View(customerInfoCharts);
             //var customers = _context.Customers.ToList();
             //CustomerInfoChart customerInfoChart = new CustomerInfoChart()
             //{
@@ -31,7 +31,7 @@ namespace TrashCollector.Controllers
             //};
             //return View(customers);
             //return View(await _context.CustomerInfoCharts.ToListAsync());
-        }
+        //}
 
         // GET: CustomerInfoCharts/Details/5
         public async Task<IActionResult> Details(int? id)
